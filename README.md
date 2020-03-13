@@ -4,6 +4,13 @@ This project is a simple web chat made with NodeJS and socket.io.
 
 **Features:**
     * Real time chat.
+    * Get previous messages.
+
+**TODO:**
+    * DB Data storage.
+    * Broadcast a message to connected users when someone connects or disconnects.
+    * Add “{user} is typing” functionality.
+    * Show who’s online.
 
 ## Installation
 
