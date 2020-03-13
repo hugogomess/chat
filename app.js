@@ -18,6 +18,7 @@ let messages = [];
 
 io.on('connection', socket => {
     console.log(`Socket connected: ${socket.id}`);
+    socket.broadcast.emit('userConnected');
 
     socket.emit('previousMessages', messages);
 
@@ -25,6 +26,10 @@ io.on('connection', socket => {
         messages.push(data);
         socket.broadcast.emit('receivedMessage', data);
     })
+
+    socket.on('disconnect', () => {
+        socket.broadcast.emit('userDisconnected');
+    });
 });
 
 server.listen(3000);
