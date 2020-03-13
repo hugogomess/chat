@@ -1,17 +1,17 @@
-const app = require('express')();
-const http = require('http').createServer(app);
-const io = require('socket.io')(http);
-const port = 3000;
+const express = require('express');
+const path = require('path');
 
+const app = express();
+const server = require('http').createServer(app);
+const io = require('socket.io')(server);
 
-app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/views/index.html');
+app.use(express.static(path.join(__dirname, 'public')));
+app.set('views', path.join(__dirname, 'public'));
+app.engine('html', require('ejs').renderFile);
+app.set('view engine', 'html');
+
+app.use('/', (req, res) => {
+    res.render('index.html');
 });
 
-io.on('connection', (socket) => {
-    socket.on('chat message', (msg) => {
-        io.emit('chat message', msg);
-    });
-});
-
-http.listen(port, () => console.log('app listen in port ' + port))
+server.listen(3000);
