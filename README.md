@@ -2,6 +2,8 @@
 
 This project is a simple web chat made with NodeJS and socket.io.
 
+![Alt Text](demo/demo.gif)
+
 ## Features
 
 * Real time chat.
